@@ -10,24 +10,40 @@
   const $calcEquals = document.querySelector(".equal-sign");
   const $clearCalc = document.querySelector(".clear");
 
-  var userInputArr = [];
+  var calculation = [];
   var calcFirstInput = [];
   var calcSecondInput = [];
-  var calcTotal = [];
+  // var calcTotal
   // Callback functions for numbers/operators
   function pushNumber(event) {
     const clickedKey = event.target.value;
-    userInputArr.push(clickedKey);
-    console.log(userInputArr);
+    calculation.push(clickedKey);
+    console.log(calculation);
+    alert(event.target.value);
+    $calScreen.value = calculation.toString().split(",").join("");
   }
 
   function pushOperator(event) {
     const clickedKey = event.target.value;
-    userInputArr.push(clickedKey);
-    console.log(userInputArr);
+    calculation.push(clickedKey);
+    console.log(calculation);
+    alert(event.target.value);
+    $calScreen.value = calculation.toString().split(",").join("");
+  }
+
+  function pushEqual(event) {
+    const clickedKey = event.target.value;
+    calculation.push(clickedKey);
+    console.log(calculation);
+    for (let i = 0; i < calculation.length; i++) {
+      console.log(calculation[i]);
+    }
+    alert(event.target.value);
+    $calScreen.value = calculation.toString().split(",").join("");
   }
 
   // Event listeners for numbers/operators
+
   $keyValue.forEach(function (button) {
     button.addEventListener("click", pushNumber);
   });
@@ -36,23 +52,24 @@
     button.addEventListener("click", pushOperator);
   });
 
-  $calcEquals.addEventListener("click", () => {
-    for (let i = 0; i < userInputArr.length; i++) {
-      console.log(userInputArr[i]);
-    }
-    console.log("We pressed the equal button ");
-  });
-  $clearCalc.addEventListener("click", pushOperator);
+  $calcEquals.addEventListener("click", pushEqual);
+  pushEqual(button);
 
   //*** | Calculation Section |  ***
-  function calculate(event) {
-    alert(event.target.button);
-  }
 
+  // $calcTotal(function (button) {});
+
+  // *** | Calculation Total ||(SUM)|| **
+
+  function calcArr(array) {
+    if ((pushOperator().matches = [("+", "-", "/", "*")])) {
+      console.log("You're adding");
+    }
+  }
   //*** | Display |***/
 
   // DO NOT delete
-  $calScreen = userInputArr[()];
+  // $calScreen = document.querySelector(".calculator-screen");
   console.log("here", $calScreen);
   console.log(typeof $calScreen.value);
   console.log("here", $calKeys.value);

@@ -9,6 +9,8 @@
   const $operatorSym = document.querySelectorAll(".operator");
   const $calcEquals = document.querySelector(".equal-sign");
   const $clearCalc = document.querySelector(".clear");
+  const $plusMinus = document.querySelector(".plus-minus");
+  const $decimal = document.querySelector(".decimal");
 
   var calculation = [];
   var calcFirstInput = [];
@@ -27,7 +29,6 @@
     const clickedKey = event.target.value;
     calculation.push(clickedKey);
     console.log(calculation);
-    alert(event.target.value);
     $calScreen.value = calculation.toString().split(",").join("");
   }
 
@@ -37,11 +38,26 @@
     console.log(calculation);
     for (let i = 0; i < calculation.length; i++) {
       console.log(calculation[i]);
+      console.log("The equal button was pressed");
+      alert(event.target.value);
+      $calScreen.value = calculation.toString().split(",").join("");
     }
-    alert(event.target.value);
-    $calScreen.value = calculation.toString().split(",").join("");
   }
 
+  function pushPlusMinus() {
+    const currentOutput = Number($calScreen.value);
+    $calScreen.value = -currentOutput;
+  }
+
+  function addDecimal() {
+    if ($calScreen.value !== "") {
+      if ($calScreen.value.indexOf(".") === -1) {
+        $calScreen.value += ".";
+        $calScreen.value = Number($calScreen.value);
+      }
+    }
+    $calScreen.value = calculation.toString().split(",").join("");
+  }
   // Event listeners for numbers/operators
 
   $keyValue.forEach(function (button) {
@@ -54,7 +70,19 @@
 
   $calcEquals.addEventListener("click", pushEqual);
 
+  $plusMinus.addEventListener("click", pushPlusMinus);
+
+  $decimal.addEventListener("click", addDecimal);
+
   //*** | Calculation Section |  ***
+
+  function addition(num1, num2) {
+    let sumAnswer = [];
+    for (let i = 0; i < calculation.length; i++)
+      if ($calScreen[i] == $calcEquals.value) {
+        console.log("equal sign is targetted");
+      }
+  }
 
   // $calcTotal(function (button) {});
 
